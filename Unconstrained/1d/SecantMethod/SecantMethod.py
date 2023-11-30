@@ -1,4 +1,5 @@
 import numpy as np
+from dill.source import getsource
 
 
 def SecantMethod(f, g, xm1, x0, stop_criteria, eps=None, N=None):
@@ -12,6 +13,8 @@ def SecantMethod(f, g, xm1, x0, stop_criteria, eps=None, N=None):
     or x_{k+1} = (f'(x_k) * x_{k-1} - f'(x_{k-1}) * x_k) / (f'(x_k) - f'(x_{k-1}))
     Stop criteria: |x_{k+1} - x_k| < eps
     '''
+    print(getsource(f))
+    print(getsource(g))
     if stop_criteria not in ['eps', 'maxiter', 'epsx']:
         raise NotImplementedError
     x_pre = xm1
@@ -38,6 +41,8 @@ def SecantMethodSolve(g, xm1, x0, stop_criteria, eps=None, N=None):
     Use Secant Method to solve g(x)=0
     Stop criteria: |x_{k+1} - x_k| < eps
     '''
+    print('Optimizing')
+    print(getsource(g))
     if stop_criteria not in ['eps', 'maxiter', 'epsx']:
         raise NotImplementedError
     x_pre = xm1
@@ -45,8 +50,6 @@ def SecantMethodSolve(g, xm1, x0, stop_criteria, eps=None, N=None):
     print(f'x_-1={x_pre}, x_0={x}')
     i = 1
     while True:
-        # print((g(x_pre) * x_prepre - g(x_prepre) * x_pre) / (g(x_pre) - g(x_prepre)))
-        # return
         x, x_pre = (g(x) * x_pre - g(x_pre) * x) / (g(x) - g(x_pre)), x
         print(f'x{i}={x}')
         i += 1
