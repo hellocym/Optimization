@@ -25,6 +25,6 @@ def GoldenSectionSearch(f, a0, b0, N):
         print(f'Minimum is in [{a0}, {b0}]')
 
 if __name__ == '__main__':
-    f = lambda x: x**4 - 14*x**3 + 60*x**2 -70*x
+    f = lambda x: x**4 - 14*x**3 + 60*x**2 - 70*x
     GoldenSectionSearch(f, 0, 2, 4)
     
